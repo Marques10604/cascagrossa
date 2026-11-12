@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casca Grossa | Treino de concurso sem filtro</title>
+<meta name="description" content="O Agente Casca Grossa: a IA no WhatsApp que te esculacha e te obriga a treinar questão todo dia. 3 questões grátis.">
+<meta property="og:title" content="CASCA GROSSA 💀 — o bot que come teu fígado nos estudos">
+<meta property="og:description" content="Bota tua desculpa esfarrapada. Ele esculacha e te manda questão no WhatsApp. 3 grátis.">
+<style>
+  :root { --bg:#0a0a0a; --card:#151515; --borda:#2a2a2a; --texto:#f2f2f2; --mudo:#9a9a9a; --red:#dc2626; --amarelo:#facc15; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--texto); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+         min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; }
+  .card { width:100%; max-width:440px; background:var(--card); border:2px solid var(--red); border-radius:14px; padding:24px;
+          box-shadow:0 12px 32px rgba(0,0,0,.5); }
+  .selo { display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:800; letter-spacing:.12em;
+          text-transform:uppercase; padding:4px 10px; border-radius:4px; }
+  h1 { margin:12px 0 6px; font-size:30px; line-height:1.1; font-weight:900; text-transform:uppercase; }
+  h1 span { color:var(--red); }
+  .sub { color:var(--mudo); margin:0 0 20px; font-size:14px; }
+  .sub b { color:var(--texto); }
+  label { display:block; font-size:12px; font-weight:700; text-transform:uppercase; color:var(--mudo); margin:14px 0 6px; }
+  label.alerta { color:#f87171; }
+  input[type=text], select, textarea { width:100%; background:#0d0d0d; color:var(--texto); border:1px solid var(--borda);
+          border-radius:8px; padding:12px; font:inherit; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:var(--red); }
+  textarea { resize:vertical; font-size:14px; }
+  .dica { font-size:11px; color:#777; margin-top:4px; }
+  .modos { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .modo { display:block; border:1px solid var(--borda); border-radius:8px; padding:10px; cursor:pointer; margin:0;
+          text-transform:none; font-weight:400; font-size:12px; color:var(--mudo); }
+  .modo b { display:block; color:var(--texto); font-size:14px; margin-bottom:2px; }
+  .modo input { position:absolute; opacity:0; }
+  .modo:has(input:checked) { border-color:var(--red); background:#1f0a0a; }
+  .modo:has(input:focus-visible) { outline:2px solid var(--amarelo); }
+  .check { display:flex; gap:10px; align-items:flex-start; font-size:13px; color:var(--mudo); margin-top:12px; text-transform:none; font-weight:400; }
+  .check input { margin-top:3px; accent-color:var(--red); }
+  .check a { color:var(--texto); }
+  button { width:100%; margin-top:20px; background:var(--red); color:#fff; border:0; border-radius:8px; padding:16px;
+           font:900 16px/1 system-ui,sans-serif; text-transform:uppercase; letter-spacing:.04em; cursor:pointer; }
+  button:hover { background:#b91c1c; }
+  button:disabled { opacity:.6; cursor:wait; }
+  #status { text-align:center; color:var(--amarelo); font-size:13px; font-weight:700; min-height:20px; margin-top:10px; }
+  .rodape { border-top:1px solid var(--borda); margin-top:20px; padding-top:12px; font-size:11px; color:#666; text-align:center; }
+</style>
+</head>
+<body>
+<main class="card">
+  <span class="selo">⚠️ Proibido para frouxos · 18+</span>
+  <h1>Casca <span>Grossa</span> 💀</h1>
+  <p class="sub">O Agente Casca Grossa: a IA no WhatsApp que <b>destrói tuas desculpas</b> e te obriga a treinar questão todo dia.
+     Errou? Esculacho. Sumiu? Ele vai atrás. <b>3 questões grátis.</b></p>
+
+  <form id="form">
+    <label for="nome">1. Teu nome (ou nome de guerra)</label>
+    <input type="text" id="nome" required minlength="2" maxlength="40" placeholder="Ex: Silva" autocomplete="given-name">
+
+    <label for="trilha">2. Qual é tua trincheira?</label>
+    <select id="trilha" required>
+      <option value="" disabled selected>Escolhe teu alvo...</option>
+    </select>
+
+    <label for="desculpa" class="alerta">3. Qual é tua maior desculpa esfarrapada pra ainda não ter passado?</label>
+    <textarea id="desculpa" required minlength="5" maxlength="300" rows="3"
+      placeholder="Seja sincero: 'chego cansado e fico no TikTok', 'começo e desisto na 2ª semana'..."></textarea>
+    <p class="dica">O Casca Grossa vai ler isso antes da 1ª questão. Quanto mais sincero, pior pra ti.</p>
+
+    <label>4. Como tu aguenta ser cobrado(a)?</label>
+    <div class="modos" role="radiogroup">
+      <label class="modo"><input type="radio" name="modo" value="sem_filtro" checked><b>💀 Sem Filtro</b>Palavrão, roast pesado, zero pena.</label>
+      <label class="modo"><input type="radio" name="modo" value="motivador"><b>🎯 Motivador</b>Treinador exigente, sem palavrão.</label>
+    </div>
+    <p class="dica">Dá pra trocar depois no WhatsApp.</p>
+
+    <label class="check"><input type="checkbox" id="maior" required> Tenho 18 anos ou mais e aceito ser cobrado(a) com humor ácido no modo que escolhi.</label>
+    <label class="check"><input type="checkbox" id="aceite" required> Li e aceito os <a href="termos.html" target="_blank">termos e a política de privacidade</a>.</label>
+
+    <button type="submit" id="btn">🔥 Liberar 3 questões + esculacho</button>
+    <p id="status" role="status"></p>
+  </form>
+
+  <p class="rodape">Você vai abrir o WhatsApp com uma mensagem pronta. É só apertar enviar.</p>
+</main>
+<script>
+  // URL do backend (servidor com o bot). Se a página for servida pelo próprio backend, ele usa o mesmo endereço.
+  const API = 'https://cascagrossa.duckdns.org';
+  const API_BASE = location.hostname === new URL(API).hostname ? '' : API;
+  fetch(`${API_BASE}/api/trilhas`).then(r => r.json()).then(lista => {
+    const sel = document.getElementById('trilha');
+    for (const t of lista) sel.add(new Option(t.nome, t.id));
+  }).catch(() => { document.getElementById('status').textContent = 'Agente fora do ar. Tenta em 1 minuto.'; });
+  const form = document.getElementById('form');
+  const btn = document.getElementById('btn');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Preparando a voadora...';
+    status.textContent = '';
+    try {
+      const resp = await fetch(`${API_BASE}/api/alistar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: document.getElementById('nome').value.trim(),
+          trilha: document.getElementById('trilha').value,
+          desculpa: document.getElementById('desculpa').value.trim(),
+          maior_idade: document.getElementById('maior').checked,
+          aceite: document.getElementById('aceite').checked,
+          ref: new URLSearchParams(location.search).get('ref'),
+          modo: document.querySelector('input[name=modo]:checked').value,
+        }),
+      });
+      const dados = await resp.json();
+      if (!resp.ok) throw new Error(typeof dados.detail === 'string' ? dados.detail : 'Confere os campos aí, guerreiro.');
+      status.textContent = 'Ficha registrada. Abrindo o WhatsApp...';
+      window.location.href = dados.whatsapp_url;
+    } catch (err) {
+      status.textContent = err.message || 'Deu ruim. Tenta de novo.';
+      btn.disabled = false;
+      btn.textContent = '🔥 Liberar 3 questões + esculacho';
+    }
+  });
+</script>
+</body>
+</html>
