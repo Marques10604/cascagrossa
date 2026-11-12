@@ -47,10 +47,12 @@
 </head>
 <body>
 <main class="card">
-  <span class="selo">⚠️ Proibido para frouxos · 18+</span>
+  <span class="selo">⚠️ Proibido para frouxos · Contém palavrões</span>
   <h1>Casca <span>Grossa</span> 💀</h1>
   <p class="sub">O Agente Casca Grossa: a IA no WhatsApp que <b>destrói tuas desculpas</b> e te obriga a treinar questão todo dia.
      Errou? Esculacho. Sumiu? Ele vai atrás. <b>3 questões grátis.</b></p>
+  <p class="dica"><b>⚠️ Aviso:</b> o modo padrão (💀 Sem Filtro) usa <b>palavrão e humor pesado</b>.
+     Se preferir cobrança sem palavrão, escolha o modo 🎯 Motivador no passo 4.</p>
 
   <form id="form">
     <label for="nome">1. Teu nome (ou nome de guerra)</label>
@@ -73,7 +75,7 @@
     </div>
     <p class="dica">Dá pra trocar depois no WhatsApp.</p>
 
-    <label class="check"><input type="checkbox" id="maior" required> Tenho 18 anos ou mais e aceito ser cobrado(a) com humor ácido no modo que escolhi.</label>
+    <label class="check"><input type="checkbox" id="maior" required> Sei que o conteúdo pode ter palavrão e aceito ser cobrado(a) com humor ácido no modo que escolhi.</label>
     <label class="check"><input type="checkbox" id="aceite" required> Li e aceito os <a href="termos.html" target="_blank">termos e a política de privacidade</a>.</label>
 
     <button type="submit" id="btn">🔥 Liberar 3 questões + esculacho</button>
@@ -84,8 +86,10 @@
 </main>
 <script>
   // URL do backend (servidor com o bot). Se a página for servida pelo próprio backend, ele usa o mesmo endereço.
+  // Na hospedagem só de página (Cloudflare Pages / GitHub Pages) aponta pro servidor do bot; servida pelo bot, usa o mesmo endereço.
   const API = 'https://cascagrossa.duckdns.org';
-  const API_BASE = location.hostname === new URL(API).hostname ? '' : API;
+  const SO_PAGINA = /\.pages\.dev$|\.github\.io$/.test(location.hostname);
+  const API_BASE = SO_PAGINA ? API : '';
   fetch(`${API_BASE}/api/trilhas`).then(r => r.json()).then(lista => {
     const sel = document.getElementById('trilha');
     for (const t of lista) sel.add(new Option(t.nome, t.id));
