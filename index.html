@@ -3,33 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casca Grossa | Treino de concurso sem filtro</title>
-<meta name="description" content="O Agente Casca Grossa: a IA no WhatsApp que te esculacha e te obriga a treinar questão todo dia. 3 questões grátis.">
-<meta property="og:title" content="CASCA GROSSA 💀 — o bot que come teu fígado nos estudos">
-<meta property="og:description" content="Bota tua desculpa esfarrapada. Ele esculacha e te manda questão no WhatsApp. 3 grátis.">
+<title>Casca Grossa | Questão de concurso no WhatsApp, com cobrança</title>
+<meta name="description" content="Uma IA no WhatsApp que te manda questão de concurso todo dia, corrige na hora e te cobra quando tu some. 3 questões grátis.">
+<meta property="og:title" content="CASCA GROSSA 💀 Questão de concurso no WhatsApp, com cobrança">
+<meta property="og:description" content="Conta tua desculpa pra não estudar. Ele responde com esculacho e questão. 3 grátis.">
+<meta property="og:image" content="https://cascagrossa-11u.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="logo.png">
 <style>
-  :root { --bg:#0a0a0a; --card:#151515; --borda:#2a2a2a; --texto:#f2f2f2; --mudo:#9a9a9a; --red:#dc2626; --amarelo:#facc15; }
+  :root { --bg:#0a0a0a; --card:#151515; --borda:#2a2a2a; --texto:#f2f2f2; --mudo:#a3a3a3; --red:#dc2626; --amarelo:#facc15; --verde:#1f3d2b; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--texto); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-         min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; }
-  .card { width:100%; max-width:440px; background:var(--card); border:2px solid var(--red); border-radius:14px; padding:24px;
-          box-shadow:0 12px 32px rgba(0,0,0,.5); }
-  .selo { display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:800; letter-spacing:.12em;
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--texto); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; padding:16px; }
+  .pagina { max-width:480px; margin:0 auto; }
+  section { margin:0 0 36px; }
+  .selo { display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:800; letter-spacing:.1em;
           text-transform:uppercase; padding:4px 10px; border-radius:4px; }
-  h1 { margin:12px 0 6px; font-size:30px; line-height:1.1; font-weight:900; text-transform:uppercase; }
+  h1 { margin:14px 0 10px; font-size:32px; line-height:1.08; font-weight:900; }
   h1 span { color:var(--red); }
-  .sub { color:var(--mudo); margin:0 0 20px; font-size:14px; }
-  .sub b { color:var(--texto); }
+  h2 { font-size:20px; line-height:1.2; margin:0 0 12px; font-weight:900; }
+  p { margin:0 0 12px; }
+  .lead { color:var(--mudo); font-size:16px; }
+  .lead b { color:var(--texto); }
+  .cta { display:block; text-align:center; text-decoration:none; background:var(--red); color:#fff; border-radius:8px; padding:16px;
+         font:900 16px/1 system-ui,sans-serif; text-transform:uppercase; letter-spacing:.04em; margin-top:16px; }
+  .cta:hover { background:#b91c1c; }
+  .mini { font-size:12px; color:#8a8a8a; text-align:center; margin-top:8px; }
+  .passos { list-style:none; padding:0; margin:0; counter-reset:p; }
+  .passos li { counter-increment:p; position:relative; padding:0 0 14px 40px; color:var(--mudo); }
+  .passos li b { color:var(--texto); }
+  .passos li::before { content:counter(p); position:absolute; left:0; top:0; width:28px; height:28px; border-radius:50%;
+                       background:var(--red); color:#fff; font-weight:900; display:grid; place-items:center; font-size:14px; }
+  .chat { background:#0b141a; border:1px solid var(--borda); border-radius:12px; padding:14px; font-size:14px; }
+  .chat .rot { font-size:11px; color:#8a8a8a; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .msg { max-width:88%; padding:8px 10px; border-radius:8px; margin:0 0 8px; }
+  .msg.bot { background:#202c33; }
+  .msg.eu { background:#005c4b; margin-left:auto; }
+  .modos-info { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .caixa { border:1px solid var(--borda); border-radius:10px; padding:12px; background:var(--card); font-size:14px; color:var(--mudo); }
+  .caixa b { display:block; color:var(--texto); font-size:15px; margin-bottom:4px; }
+  .precos { display:grid; gap:8px; }
+  .preco { display:flex; justify-content:space-between; align-items:center; border:1px solid var(--borda); border-radius:10px;
+           padding:12px 14px; background:var(--card); }
+  .preco .v { font-weight:900; font-size:18px; }
+  .preco.gratis { border-color:var(--red); }
+  .preco > span:first-child { display:flex; flex-direction:column; gap:2px; }
+  .preco .nv { color:var(--amarelo); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
+  .preco .zoa { color:#f87171; font-size:12px; }
+  .preco .v { white-space:nowrap; padding-left:10px; }
+  .preco.destaque { border:2px solid var(--amarelo); background:#1a1606; }
+  .preco.travado { opacity:.7; }
+  details { border-bottom:1px solid var(--borda); padding:12px 0; }
+  summary { cursor:pointer; font-weight:700; }
+  details p { color:var(--mudo); margin:8px 0 0; font-size:15px; }
+  .card { background:var(--card); border:2px solid var(--red); border-radius:14px; padding:20px; box-shadow:0 12px 32px rgba(0,0,0,.5); }
   label { display:block; font-size:12px; font-weight:700; text-transform:uppercase; color:var(--mudo); margin:14px 0 6px; }
   label.alerta { color:#f87171; }
   input[type=text], select, textarea { width:100%; background:#0d0d0d; color:var(--texto); border:1px solid var(--borda);
           border-radius:8px; padding:12px; font:inherit; }
   input:focus, select:focus, textarea:focus { outline:none; border-color:var(--red); }
   textarea { resize:vertical; font-size:14px; }
-  .dica { font-size:11px; color:#777; margin-top:4px; }
+  .dica { font-size:12px; color:#8a8a8a; margin-top:4px; }
   .modos { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
   .modo { display:block; border:1px solid var(--borda); border-radius:8px; padding:10px; cursor:pointer; margin:0;
-          text-transform:none; font-weight:400; font-size:12px; color:var(--mudo); }
+          text-transform:none; font-weight:400; font-size:12px; color:var(--mudo); position:relative; }
   .modo b { display:block; color:var(--texto); font-size:14px; margin-bottom:2px; }
   .modo input { position:absolute; opacity:0; }
   .modo:has(input:checked) { border-color:var(--red); background:#1f0a0a; }
@@ -42,58 +82,371 @@
   button:hover { background:#b91c1c; }
   button:disabled { opacity:.6; cursor:wait; }
   #status { text-align:center; color:var(--amarelo); font-size:13px; font-weight:700; min-height:20px; margin-top:10px; }
-  .rodape { border-top:1px solid var(--borda); margin-top:20px; padding-top:12px; font-size:11px; color:#666; text-align:center; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .chip { width:auto; margin:0; background:#1c1c1c; border:1px solid var(--borda); color:var(--texto); border-radius:999px;
+          padding:7px 11px; font:600 12px/1.2 system-ui,sans-serif; text-transform:none; letter-spacing:0; }
+  .chip:hover { background:#262626; border-color:var(--red); }
+  .fixo { position:fixed; left:12px; right:12px; bottom:12px; margin:0; z-index:10; box-shadow:0 8px 24px rgba(0,0,0,.6);
+          transition:transform .2s, opacity .2s; }
+  .fixo.some { transform:translateY(140%); opacity:0; pointer-events:none; }
+  @media (min-width:700px) { .fixo { display:none; } }
+  body { padding-bottom:84px; }
+  /* topo do chat estilo WhatsApp */
+  .chat-topo { display:flex; align-items:center; gap:10px; margin:-14px -14px 12px; padding:10px 14px; background:#202c33; border-radius:12px 12px 0 0; }
+  .chat-topo img { width:36px; height:36px; border-radius:50%; }
+  .chat-topo b { display:block; font-size:14px; }
+  .chat-topo small { color:#8696a0; font-size:12px; }
+  .anima .msg { opacity:0; transform:translateY(8px); }
+  .anima .msg.vis { opacity:1; transform:none; transition:opacity .35s, transform .35s; }
+  .digitando { display:flex; width:max-content; gap:4px; background:#202c33; padding:10px 12px; border-radius:8px; margin-bottom:8px; }
+  .digitando i { width:6px; height:6px; border-radius:50%; background:#8696a0; animation:pula 1s infinite; }
+  .digitando i:nth-child(2) { animation-delay:.15s; } .digitando i:nth-child(3) { animation-delay:.3s; }
+  @keyframes pula { 0%,60%,100% { transform:none; opacity:.5; } 30% { transform:translateY(-4px); opacity:1; } }
+  /* entrada das seções */
+  .surge { opacity:0; transform:translateY(18px); transition:opacity .6s, transform .6s; }
+  .surge.vis { opacity:1; transform:none; }
+  /* título dá um tranco */
+  h1 span { display:inline-block; animation:tranco .5s .6s both; }
+  @keyframes tranco { 0%{transform:scale(1.25) rotate(-2deg);opacity:0} 60%{transform:scale(.96) rotate(1deg);opacity:1} 80%{transform:translateX(-3px)} 100%{transform:none} }
+  /* botão respira */
+  .cta { animation:respira 2.4s ease-in-out infinite; }
+  @keyframes respira { 0%,100% { box-shadow:0 0 0 0 rgba(220,38,38,.55); } 50% { box-shadow:0 0 0 10px rgba(220,38,38,0); } }
+  .marca { display:flex; align-items:center; gap:8px; margin-bottom:14px; font-weight:900; letter-spacing:.06em; }
+  .marca img { width:34px; height:34px; border-radius:50%; }
+  /* simulador */
+  .sim-tons { display:flex; gap:6px; margin:0 0 10px; }
+  .sim-tons button { width:auto; margin:0; padding:8px 12px; font-size:12px; background:#1c1c1c; border:1px solid var(--borda); text-transform:none; letter-spacing:0; }
+  .sim-tons button[aria-pressed=true] { border-color:var(--red); background:#1f0a0a; }
+  #sim-chat { min-height:190px; }
+  #sim-outra { margin-top:10px; }
+  .tapa-tranco { animation:tranco-chat .45s; }
+  @keyframes tranco-chat { 0%,100%{transform:none} 15%{transform:translate(-6px,2px) rotate(-1deg)} 30%{transform:translate(6px,-2px) rotate(1deg)}
+                           45%{transform:translate(-4px,1px)} 60%{transform:translate(4px,-1px)} 80%{transform:translate(-2px,0)} }
+  .q-enunciado { background:var(--card); border:1px solid var(--borda); border-radius:10px; padding:14px; margin:0 0 10px; }
+  .q-botoes { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .q-botoes button { margin:0; }
+  .q-botoes .e { background:#1c1c1c; border:1px solid var(--borda); }
+  .q-botoes .e:hover { background:#262626; }
+  #q-res { margin-top:10px; }
+  #q-res .msg { max-width:100%; }
+  @media (prefers-reduced-motion:reduce) { *, *::before { animation:none !important; transition:none !important; }
+    .surge, .anima .msg { opacity:1 !important; transform:none !important; } }
+  .niveis { list-style:none; display:flex; gap:6px; padding:0; margin:4px 0 8px; align-items:flex-end; }
+  .niveis li { flex:1; text-align:center; font-weight:900; font-size:13px; color:#fff; border-radius:6px 6px 2px 2px;
+               height:calc(18px + var(--n) * 12px); display:grid; place-items:end center; padding-bottom:4px;
+               background:rgba(220,38,38,calc(.18 * var(--n))); }
+  .tapa { border:1px solid rgba(250,204,21,.35); background:#1a1606; padding:14px; border-radius:10px; }
+  .tapa p { margin:0; }
+  .rodape { border-top:1px solid var(--borda); margin-top:28px; padding-top:12px; font-size:12px; color:#777; text-align:center; }
+  .rodape a { color:#999; }
 </style>
 </head>
 <body>
-<main class="card">
-  <span class="selo">⚠️ Proibido para frouxos · Contém palavrões</span>
-  <h1>Casca <span>Grossa</span> 💀</h1>
-  <p class="sub">O Agente Casca Grossa: a IA no WhatsApp que <b>destrói tuas desculpas</b> e te obriga a treinar questão todo dia.
-     Errou? Esculacho. Sumiu? Ele vai atrás. <b>3 questões grátis.</b></p>
-  <p class="dica"><b>⚠️ Aviso:</b> o modo padrão (💀 Sem Filtro) usa <b>palavrão e humor pesado</b>.
-     Se preferir cobrança sem palavrão, escolha o modo 🎯 Motivador no passo 4.</p>
+<div class="pagina">
 
-  <form id="form">
-    <label for="nome">1. Teu nome (ou nome de guerra)</label>
-    <input type="text" id="nome" required minlength="2" maxlength="40" placeholder="Ex: Silva" autocomplete="given-name">
+  <!-- 1. Topo: dor → promessa concreta → ação -->
+  <section>
+    <div class="marca"><img src="logo.png" alt="" width="34" height="34">CASCA GROSSA</div>
+    <span class="selo">⚠️ Contém palavrões · tem modo sem palavrão</span>
+    <h1>Tu diz que vai estudar amanhã. <span>Ele vai cobrar.</span></h1>
+    <p class="lead">O Casca Grossa é uma IA no teu WhatsApp. Ela manda <b>questão de concurso todo dia</b>, corrige na hora
+       com a explicação e, se tu sumir, <b>vai atrás de ti</b> com o deboche que tu merece.</p>
+    <a class="cta" href="#comecar">🔥 Quero minhas 3 questões grátis</a>
+    <p class="mini">Sem cartão. Leva 1 minuto. Tu recebe tudo no WhatsApp.</p>
+  </section>
 
-    <label for="trilha">2. Qual é tua trincheira?</label>
-    <select id="trilha" required>
-      <option value="" disabled selected>Escolhe teu alvo...</option>
-    </select>
-
-    <label for="desculpa" class="alerta">3. Qual é tua maior desculpa esfarrapada pra ainda não ter passado?</label>
-    <textarea id="desculpa" required minlength="5" maxlength="300" rows="3"
-      placeholder="Seja sincero: 'chego cansado e fico no TikTok', 'começo e desisto na 2ª semana'..."></textarea>
-    <p class="dica">O Casca Grossa vai ler isso antes da 1ª questão. Quanto mais sincero, pior pra ti.</p>
-
-    <label>4. Como tu aguenta ser cobrado(a)?</label>
-    <div class="modos" role="radiogroup">
-      <label class="modo"><input type="radio" name="modo" value="sem_filtro" checked><b>💀 Sem Filtro</b>Palavrão, roast pesado, zero pena.</label>
-      <label class="modo"><input type="radio" name="modo" value="motivador"><b>🎯 Motivador</b>Treinador exigente, sem palavrão.</label>
+  <!-- 2. Mostrar, não contar (subiu: é o que mais convence) -->
+  <section>
+    <h2>É assim que ele fala</h2>
+    <div class="chat anima" id="exemplo" aria-label="Exemplo de conversa">
+      <div class="chat-topo"><img src="logo.png" alt=""><span><b>Casca Grossa</b><small>online · modo Sem Filtro</small></span></div>
+      <p class="rot">Exemplo de conversa</p>
+      <p class="msg bot">Tua desculpa foi "chego cansado e fico no TikTok". CANSADO DE QUÊ, PORRA? De rolar a tela com o dedão? Teu polegar tem mais horas de treino que teu cérebro. <b>Certo ou Errado?</b> O servidor público efetivo adquire estabilidade após 3 anos de efetivo exercício.</p>
+      <p class="msg eu">Errado</p>
+      <p class="msg bot">ERROU, CARALHO. O algoritmo do TikTok te conhece melhor que tu conhece a Constituição. Se errar fosse cargo público, tu já tava efetivado. É <b>Certo</b>: 3 anos de efetivo exercício e avaliação especial de desempenho (CF, art. 41). Anota.</p>
+      <p class="msg eu">cara, não quero mais fazer questão hoje</p>
+      <p class="msg bot">Ah, não quer? Duas questões e já pediu arrego. Chute de goleiro de várzea aguenta mais. Teu concorrente também não queria e tá na 40ª agora, sentado na TUA vaga. Responde a próxima e chora depois.</p>
     </div>
-    <p class="dica">Dá pra trocar depois no WhatsApp.</p>
+    <p class="dica">No meio das questões tu pode mandar a desculpa que quiser. Ele responde na hora.</p>
+    <a class="cta" href="#comecar">Quero ser cobrado assim</a>
+  </section>
 
-    <label class="check"><input type="checkbox" id="maior" required> Sei que o conteúdo pode ter palavrão e aceito ser cobrado(a) com humor ácido no modo que escolhi.</label>
-    <label class="check"><input type="checkbox" id="aceite" required> Li e aceito os <a href="termos.html" target="_blank">termos e a política de privacidade</a>.</label>
+  <!-- Simulador: testa tua desculpa -->
+  <section class="surge">
+    <h2>Testa tua desculpa aqui</h2>
+    <p class="lead">Aperta o botão, vê o que ele responde. Não gostou? Inventa outra.</p>
+    <div class="sim-tons" role="group" aria-label="Tom">
+      <button type="button" data-tom="sf" aria-pressed="true">💀 Sem Filtro</button>
+      <button type="button" data-tom="mo" aria-pressed="false">🎯 Motivador</button>
+    </div>
+    <div class="chat" id="sim-chat" aria-live="polite">
+      <div class="chat-topo"><img src="logo.png" alt=""><span><b>Casca Grossa</b><small id="sim-status">online</small></span></div>
+      <div id="sim-msgs"><p class="msg bot">Manda tua desculpa. Tô precisando rir.</p></div>
+    </div>
+    <button type="button" id="sim-outra">🎲 Inventar uma desculpa</button>
+    <p class="dica">Respostas de exemplo. No WhatsApp ele usa a tua desculpa de verdade, a hora e os teus erros.</p>
+    <a class="cta" href="#comecar">Quero levar esculacho de verdade</a>
+  </section>
 
-    <button type="submit" id="btn">🔥 Liberar 3 questões + esculacho</button>
-    <p id="status" role="status"></p>
-  </form>
+  <!-- Questão de verdade na página -->
+  <section class="surge" id="questao">
+    <h2>Responde essa. Agora.</h2>
+    <p class="lead">Uma questão de verdade, no estilo Cebraspe. Vamos ver se tu é bom só de desculpa.</p>
+    <p class="q-enunciado"><b>Certo ou Errado?</b> Pela Constituição, o voto é obrigatório para os maiores de 18 anos
+       e facultativo para os analfabetos.</p>
+    <div class="q-botoes">
+      <button type="button" data-r="C">✅ Certo</button>
+      <button type="button" data-r="E" class="e">❌ Errado</button>
+    </div>
+    <div id="q-res" aria-live="polite"></div>
+  </section>
 
-  <p class="rodape">Você vai abrir o WhatsApp com uma mensagem pronta. É só apertar enviar.</p>
-</main>
+  <!-- 3. Como funciona -->
+  <section class="surge">
+    <h2>Como funciona</h2>
+    <ol class="passos">
+      <li><b>Tu conta tua desculpa.</b> No cadastro, escreve o motivo real de ainda não ter passado. O Casca Grossa lê antes da primeira questão.</li>
+      <li><b>Abre o WhatsApp e manda a mensagem pronta.</b> As questões chegam ali mesmo, no formato Certo ou Errado do Cebraspe.</li>
+      <li><b>Tu responde, ele corrige.</b> Acertou, soma ponto e sobe de nível. Errou, leva esculacho e a explicação com a lei ou a regra por trás.</li>
+      <li><b>Sumiu, ele cobra.</b> No máximo uma mensagem por dia pra quem largou o treino. Mandou PARAR, ele para.</li>
+    </ol>
+  </section>
+
+  <!-- Objeção: já tentei e larguei -->
+  <section class="surge">
+    <h2>Já baixou app, fez cronograma e largou?</h2>
+    <p class="lead">Normal. App e cronograma ficam esperando <b>tu</b> abrir. O Casca Grossa faz o contrário: <b>se tu some, ele vai atrás</b>.
+       E cada questão leva menos de 1 minuto, dá pra responder no ônibus ou no intervalo.</p>
+  </section>
+
+  <!-- 4. Os dois modos (resolve a objeção do palavrão) -->
+  <section class="surge">
+    <h2>Tu escolhe o tom</h2>
+    <div class="modos-info">
+      <div class="caixa"><b>💀 Sem Filtro</b>Palavrão, deboche e zero pena. Pra quem só estuda com alguém no pé.</div>
+      <div class="caixa"><b>🎯 Motivador</b>A mesma pressão, sem palavrão. Pra quem não quer ouvir xingamento no ônibus.</div>
+    </div>
+    <p class="dica">Dá pra trocar de modo a qualquer hora no WhatsApp.</p>
+  </section>
+
+  <!-- Níveis: quanto mais sobe, pior fica -->
+  <section class="surge">
+    <h2>Quanto mais tu sobe, pior ele fica</h2>
+    <p class="lead">Cada acerto conta. São <b>5 níveis</b>, e a cada um que tu sobe ele <b>cobra mais pesado</b>: no começo é deboche,
+       lá em cima o erro besta não passa batido. Quem tá no topo não tem desculpa.</p>
+    <ol class="niveis" aria-label="Os 5 níveis">
+      <li style="--n:1">1</li><li style="--n:2">2</li><li style="--n:3">3</li><li style="--n:4">4</li><li style="--n:5">5</li>
+    </ol>
+    <p class="dica">Nível sobe por acerto, não por tentativa. Os níveis sobem com 20, 50, 120 e 250 acertos. O nível 3 libera o pacote de 300 questões e o 5 dá entrada no grupo fechado.</p>
+  </section>
+
+  <!-- 5. Preço, sem surpresa -->
+  <section class="surge">
+    <h2>Quanto custa</h2>
+    <p class="lead">Começa de graça. Depois tu escolhe o pacote, <b>sem precisar acertar nada</b>. O maior tu libera subindo de nível.</p>
+    <div class="precos">
+      <div class="preco gratis"><span><small class="nv">Pra começar</small>3 questões grátis
+        <i class="zoa">"Vamos ver se tu é bom em algo além de desculpa."</i></span><span class="v">R$ 0</span></div>
+      <div class="preco travado"><span><small class="nv">🔒 Nível 3 · acerta 50 questões e libera</small>300 questões <small class="dica">(R$ 0,07 cada)</small>
+        <i class="zoa">"Esse aqui é pra quem provou que não é só desculpa."</i></span><span class="v">R$ 19,90</span></div>
+      <div class="preco destaque"><span><small class="nv">⭐ Melhor custo · livre</small>150 questões <small class="dica">(R$ 0,10 cada)</small>
+        <i class="zoa">"Por R$ 5 a mais tu leva mais que o dobro. Até tu entende essa conta."</i></span><span class="v">R$ 14,90</span></div>
+      <div class="preco"><span><small class="nv">Livre</small>60 questões <small class="dica">(R$ 0,17 cada)</small>
+        <i class="zoa">"Pra quem ainda tá com medo de se comprometer."</i></span><span class="v">R$ 9,90</span></div>
+      <div class="preco"><span><small class="nv">Nível 5 · acerta 250 questões e entra</small>Grupo fechado <small class="dica">(em breve)</small>
+        <i class="zoa">"Aqui ninguém tem mais desculpa."</i></span><span class="v">🔓</span></div>
+    </div>
+    <p class="dica">Tu só paga depois de testar as 3, se quiser. Pix dentro do próprio WhatsApp. Não é assinatura. Quando o pacote acabar, tu decide se compra outro.</p>
+    <a class="cta" href="#comecar">🔥 Testar grátis primeiro</a>
+  </section>
+
+  <!-- 6. Objeções de quem chega de grupo de concurso -->
+  <section class="surge">
+    <h2>Dúvidas</h2>
+    <details><summary>Tenho que pagar alguma coisa pra testar?</summary>
+      <p>Não. As 3 primeiras questões são grátis e não pedem cartão. Só paga quem quiser continuar.</p></details>
+    <details><summary>Questão grátis tem em todo canto. Por que pagar?</summary>
+      <p>É verdade, questão tu acha de graça. O que não acha é alguém te cobrando todo dia. No Casca Grossa tu paga pela cobrança: a questão chega no WhatsApp, é corrigida na hora e, se tu sumir, ele te procura.</p></details>
+    <details><summary>As questões são confiáveis?</summary>
+      <p>Toda questão vem com a explicação e a lei ou regra que fundamenta a resposta. Se achar que o gabarito está errado, manda CONTESTAR que a questão é revisada.</p></details>
+    <details><summary>Isso substitui cursinho?</summary>
+      <p>Não. Ele não dá aula de teoria. Serve pra treinar com questão e criar o hábito de estudar todo dia, junto com o material que tu já usa.</p></details>
+    <details><summary>Tenho que baixar algum app?</summary>
+      <p>Não. Funciona no teu WhatsApp. O cadastro não pede telefone nem cartão.</p></details>
+    <details><summary>Serve pra qual concurso?</summary>
+      <p>Todo mundo treina as matérias básicas: Português, Raciocínio Lógico, Constitucional, Administrativo e Ética. Além delas, tem trilha pra INSS, carreiras policiais (PM, PC, PRF, PF, Penal) e bancários (BB e Caixa).</p></details>
+    <details><summary>E se eu não aguentar o palavrão?</summary>
+      <p>Escolhe o modo Motivador. A cobrança continua, sem palavrão.</p></details>
+    <details><summary>Como faço ele parar de me cobrar?</summary>
+      <p>Manda PARAR no WhatsApp. Pra voltar, VOLTAR. Pra apagar teus dados, APAGAR MEUS DADOS.</p></details>
+    <details><summary>Quem fez isso?</summary>
+      <p>Um cara de Fortaleza que fez o Casca Grossa pra quem precisa de alguém no pé pra estudar. Projeto independente, sem ligação com banca ou cursinho.</p></details>
+  </section>
+
+  <section class="surge tapa">
+    <p><b>Ah, e tu que tá aí lendo página na internet em vez de estudar:</b> tu tá se enganando, infeliz.
+       Pesquisar "como parar de procrastinar" também é procrastinar. Preenche isso e vai responder questão.</p>
+  </section>
+
+  <!-- 7. Formulário (código igual ao da página atual) -->
+  <section id="comecar">
+    <div class="card">
+      <h2>Libera tuas 3 questões</h2>
+      <form id="form">
+        <label for="nome">1. Teu nome (ou apelido)</label>
+        <input type="text" id="nome" required minlength="2" maxlength="40" placeholder="Ex: Silva" autocomplete="given-name">
+
+        <label for="trilha">2. Pra qual concurso tu estuda?</label>
+        <select id="trilha" required>
+          <option value="" disabled selected>Escolhe teu alvo...</option>
+          <option value="basicas">Qualquer concurso (matérias básicas)</option>
+          <option value="inss">INSS (Técnico do Seguro Social)</option>
+          <option value="policial">Carreiras Policiais (PM, PC, PRF, PF, Penal)</option>
+          <option value="bancario">Bancários (Banco do Brasil, Caixa)</option>
+        </select>
+
+        <label for="desculpa" class="alerta">3. Qual é tua maior desculpa pra ainda não ter passado?</label>
+        <textarea id="desculpa" required minlength="5" maxlength="300" rows="3"
+          placeholder="Seja sincero: 'chego cansado e fico no TikTok', 'começo e desisto na 2ª semana'..."></textarea>
+        <div class="chips" aria-label="Desculpas prontas">
+          <button type="button" class="chip">Chego cansado e fico no celular</button>
+          <button type="button" class="chip">Começo e desisto na 2ª semana</button>
+          <button type="button" class="chip">Não sei por onde começar</button>
+          <button type="button" class="chip">Deixo tudo pra véspera</button>
+        </div>
+        <p class="dica">Toca numa ou escreve a tua. Ele lê isso antes da 1ª questão.</p>
+
+        <label>4. Como tu aguenta ser cobrado(a)?</label>
+        <div class="modos" role="radiogroup">
+          <label class="modo"><input type="radio" name="modo" value="sem_filtro" checked><b>💀 Sem Filtro</b>Palavrão, deboche, zero pena.</label>
+          <label class="modo"><input type="radio" name="modo" value="motivador"><b>🎯 Motivador</b>Exigente, sem palavrão.</label>
+        </div>
+
+        <label class="check"><input type="checkbox" id="aceite" required> Li e aceito os <a href="termos.html" target="_blank">termos e a privacidade</a> e sei que, no modo Sem Filtro, tem palavrão e humor ácido.</label>
+
+        <button type="submit" id="btn">🔥 Liberar 3 questões grátis</button>
+        <p id="status" role="status"></p>
+      </form>
+      <p class="mini">Ao enviar, o WhatsApp abre com uma mensagem pronta. É só apertar enviar.<br>
+         O cadastro não pede teu telefone. Pra parar, manda PARAR.</p>
+    </div>
+  </section>
+
+  <a class="cta fixo" id="fixo" href="#comecar">🔥 3 questões grátis</a>
+  <p class="rodape">Casca Grossa · <a href="termos.html">Termos e privacidade</a></p>
+</div>
 <script>
-  // URL do backend (servidor com o bot). Se a página for servida pelo próprio backend, ele usa o mesmo endereço.
-  // Na hospedagem só de página (Cloudflare Pages / GitHub Pages) aponta pro servidor do bot; servida pelo bot, usa o mesmo endereço.
+  // URL do backend (servidor com o bot). Na hospedagem só de página (Cloudflare Pages / GitHub Pages) aponta pro servidor do bot; servida pelo bot, usa o mesmo endereço.
   const API = 'https://cascagrossa.duckdns.org';
   const SO_PAGINA = /\.pages\.dev$|\.github\.io$/.test(location.hostname);
   const API_BASE = SO_PAGINA ? API : '';
+  // A lista fixa no HTML garante o formulário mesmo se o servidor demorar; se o servidor responder, usa a lista dele.
   fetch(`${API_BASE}/api/trilhas`).then(r => r.json()).then(lista => {
+    if (!Array.isArray(lista) || !lista.length) return;
     const sel = document.getElementById('trilha');
+    sel.length = 1;
     for (const t of lista) sel.add(new Option(t.nome, t.id));
-  }).catch(() => { document.getElementById('status').textContent = 'Agente fora do ar. Tenta em 1 minuto.'; });
+  }).catch(() => {});
+  const desculpa = document.getElementById('desculpa');
+  document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => { desculpa.value = c.textContent; desculpa.focus(); }));
+  // ---- efeitos
+  const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const espera = ms => new Promise(r => setTimeout(r, calmo ? 0 : ms));
+  const ioSurge = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); ioSurge.unobserve(e.target); } }), { threshold:.15 });
+  document.querySelectorAll('.surge').forEach(el => ioSurge.observe(el));
+  function digitando() { const d = document.createElement('div'); d.className = 'digitando'; d.innerHTML = '<i></i><i></i><i></i>'; return d; }
+  // conversa de exemplo aparece mensagem por mensagem
+  const ex = document.getElementById('exemplo');
+  const ioEx = new IntersectionObserver(async ([e]) => {
+    if (!e.isIntersecting) return; ioEx.disconnect();
+    for (const m of ex.querySelectorAll('.msg')) {
+      if (m.classList.contains('bot')) { const d = digitando(); m.before(d); await espera(900); d.remove(); }
+      m.classList.add('vis'); await espera(m.classList.contains('bot') ? 1300 : 600);
+    }
+  }, { threshold:.3 });
+  ioEx.observe(ex);
+
+  // ---- simulador de desculpa (respostas prontas, roda sem servidor)
+  const DESCULPAS = [
+    ['Chego cansado e fico no celular',
+     'Cansado? Tu passou o dia sentado e chega cansado? Teu corpo não tá cansado do dia, tá cansado de TI. Mas pra rolar o feed até 1h a energia volta rapidinho, né? Até a bateria do teu celular em 12% tem mais disposição que tu. Larga essa merda e responde.',
+     'O cansaço some rápido quando aparece um vídeo novo, né? Então ele dá conta de 1 questão também. Leva menos de 1 minuto. Faz antes de abrir o feed.'],
+    ['Começo e desisto na 2ª semana',
+     'Puta que pariu, tu já começou tanta vez que devia ter carteirinha de iniciante. Segunda tu é futuro servidor, quarta pede baixa, domingo jura que agora vai. Tua disciplina é chip pré-pago: dura uma semana e acaba. Quem vai desistir dessa vez é a desculpa, porra.',
+     'Tu já sabe começar, o que falta é passar da 2ª semana. Uma questão por dia é pequeno demais pra largar. Essa semana a gente passa da quarta.'],
+    ['Amanhã eu começo',
+     'Amanhã? Tu falou isso ontem, caralho. E anteontem. Teu "amanhã eu começo" já tem mais temporada que novela mexicana, e o final é sempre o mesmo: tu assistindo a posse de quem estudou HOJE, comendo pipoca e chorando. Responde essa agora.',
+     'Tu disse isso ontem também. O amanhã não chega, o hoje sim. Uma questão agora e o dia já conta.'],
+    ['Trabalho o dia todo',
+     'Trabalha o dia todo. E teu concorrente faz o quê, fica deitado de rede? Ele também rala, miserável. A diferença é que no intervalo ele faz questão e tu manda figurinha de bom dia no grupo. Ele vai ser chefe e tu vai continuar mandando figurinha.',
+     'Teu concorrente também trabalha. A diferença tá no que cada um faz no intervalo. Uma questão no almoço já conta.'],
+    ['Me dá branco na prova',
+     'Branco? Branco é quando tinha alguma coisa lá dentro e sumiu. Na tua cabeça não sumiu nada, cabaço: nunca entrou. É um terreno baldio com placa de "aluga-se". Questão é o que enche isso aí. Começa agora.',
+     'Branco acontece com quem só leu e nunca treinou. Quem faz questão chega na prova já tendo errado tudo antes. Começa agora.'],
+    ['Não sei por onde começar',
+     'Faz três meses que tu "não sabe por onde começar". Nesse tempo tu salvou uns 40 posts de "como estudar" e não fez uma porra de questão. Tu não tá perdido, tá parado com o GPS ligado. Começa por AQUI, frouxo.',
+     'Tu não precisa do caminho inteiro, só do primeiro passo. E o primeiro passo é uma questão. As outras a gente vê depois.'],
+    ['Hoje não, tô sem cabeça',
+     'Sem cabeça? Pra discutir futebol no grupo tu tem cabeça. Pra escolher série tu tem cabeça. Pra stalkear ex tu tem cabeça de sobra. Só pra estudar ela some. Que cabeça seletiva do caralho. Uma questão. Só uma, miserável.',
+     'Pra outras coisas a cabeça aparece, né? Então ela aguenta uma questão. Nos dias ruins a meta é só não zerar.'],
+    ['Vou esperar sair o edital',
+     'Esperar o edital? Tu é aquele que começa a treinar pra maratona no dia da largada. Quando o edital sair, teu concorrente já tá revisando e tu ainda tá caçando PDF grátis no Google com vírus. Senta e responde, porra.',
+     'Quando o edital sai, quem começou antes tá revisando e quem esperou tá começando. Começa antes.'],
+  ];
+  let tom = 'sf', ultima = -1, rodando = false;
+  const simMsgs = document.getElementById('sim-msgs'), simStatus = document.getElementById('sim-status');
+  const simBtn = document.getElementById('sim-outra');
+  async function simular(i) {
+    if (rodando) return; rodando = true;
+    const [desc, sf, mo] = DESCULPAS[i];
+    simMsgs.innerHTML = '';
+    const eu = document.createElement('p'); eu.className = 'msg eu'; eu.textContent = desc; simMsgs.appendChild(eu);
+    await espera(400);
+    simStatus.textContent = 'digitando...'; const d = digitando(); simMsgs.appendChild(d); await espera(1200); d.remove(); simStatus.textContent = 'online';
+    const bot = document.createElement('p'); bot.className = 'msg bot'; bot.textContent = tom === 'sf' ? sf : mo; simMsgs.appendChild(bot); levarTapa(document.getElementById('sim-chat'));
+    simBtn.textContent = '🎲 Inventar outra desculpa';
+    rodando = false;
+  }
+  simBtn.addEventListener('click', () => {
+    let i; do { i = Math.floor(Math.random() * DESCULPAS.length); } while (i === ultima); ultima = i; simular(i);
+  });
+  document.querySelectorAll('.sim-tons button').forEach(b => b.addEventListener('click', () => {
+    tom = b.dataset.tom;
+    document.querySelectorAll('.sim-tons button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    if (ultima >= 0) simular(ultima);
+  }));
+
+  // ---- tapa: tremida + vibração (Android; iPhone não deixa vibrar)
+  function levarTapa(el) {
+    if (calmo) return;
+    el.classList.remove('tapa-tranco'); void el.offsetWidth; el.classList.add('tapa-tranco');
+    try { navigator.vibrate && navigator.vibrate([60, 40, 120]); } catch (e) {}
+  }
+
+  // ---- questão de verdade (CF, art. 14, §1º)
+  const qRes = document.getElementById('q-res');
+  const GAB = 'C';
+  const EXPLICA = '<b>Gabarito: CERTO.</b> O voto é obrigatório pros maiores de 18 e facultativo pros analfabetos, pros maiores de 70 e pra quem tem entre 16 e 18 anos (CF, art. 14, §1º).';
+  document.querySelectorAll('.q-botoes button').forEach(b => b.addEventListener('click', async () => {
+    document.querySelectorAll('.q-botoes button').forEach(x => x.disabled = true);
+    const acertou = b.dataset.r === GAB;
+    qRes.innerHTML = '';
+    const d = digitando(); qRes.appendChild(d); await espera(900); d.remove();
+    const m = document.createElement('p'); m.className = 'msg bot';
+    m.innerHTML = (acertou
+      ? 'Acertou. Parabéns, fez o mínimo. Aposto que foi sorte. Quero ver tu repetir isso 3 vezes seguidas lá no WhatsApp.'
+      : 'ERROU, PORRA. Questão de Constitucional do primeiro capítulo e tu caiu. Se tua vaga dependesse disso, já era de outro. Mas relaxa: no WhatsApp tem mais 3 pra tu se redimir.')
+      + '<br><br>' + EXPLICA;
+    qRes.appendChild(m);
+    if (!acertou) levarTapa(qRes);
+    const a = document.createElement('a'); a.className = 'cta'; a.href = '#comecar';
+    a.textContent = acertou ? '🔥 Provar que não foi sorte' : '🔥 Quero me redimir (3 grátis)';
+    qRes.appendChild(a);
+  }));
+
+  const fixo = document.getElementById('fixo');
+  new IntersectionObserver(([e]) => fixo.classList.toggle('some', e.isIntersecting), { rootMargin: '0px 0px 200px 0px' })
+    .observe(document.getElementById('comecar'));
   const form = document.getElementById('form');
   const btn = document.getElementById('btn');
   const status = document.getElementById('status');
@@ -110,20 +463,20 @@
           nome: document.getElementById('nome').value.trim(),
           trilha: document.getElementById('trilha').value,
           desculpa: document.getElementById('desculpa').value.trim(),
-          maior_idade: document.getElementById('maior').checked,
+          maior_idade: document.getElementById('aceite').checked,
           aceite: document.getElementById('aceite').checked,
           ref: new URLSearchParams(location.search).get('ref'),
           modo: document.querySelector('input[name=modo]:checked').value,
         }),
       });
       const dados = await resp.json();
-      if (!resp.ok) throw new Error(typeof dados.detail === 'string' ? dados.detail : 'Confere os campos aí, guerreiro.');
+      if (!resp.ok) throw new Error(typeof dados.detail === 'string' ? dados.detail : 'Confere os campos aí.');
       status.textContent = 'Ficha registrada. Abrindo o WhatsApp...';
       window.location.href = dados.whatsapp_url;
     } catch (err) {
       status.textContent = err.message || 'Deu ruim. Tenta de novo.';
       btn.disabled = false;
-      btn.textContent = '🔥 Liberar 3 questões + esculacho';
+      btn.textContent = '🔥 Liberar 3 questões grátis';
     }
   });
 </script>
