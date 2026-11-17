@@ -237,25 +237,25 @@
     <ol class="niveis" aria-label="Os 5 níveis">
       <li style="--n:1">1</li><li style="--n:2">2</li><li style="--n:3">3</li><li style="--n:4">4</li><li style="--n:5">5</li>
     </ol>
-    <p class="dica">Nível sobe por acerto, não por tentativa. Os níveis sobem com 20, 50, 120 e 250 acertos. O nível 3 libera o pacote de 300 questões e o 5 dá entrada no grupo fechado.</p>
+    <p class="dica">Nível sobe por acerto, não por tentativa. Os níveis sobem com 20, 50, 120 e 250 acertos. O nível 5 dá entrada no grupo fechado.</p>
   </section>
 
   <!-- 5. Preço, sem surpresa -->
   <section class="surge">
     <h2>Quanto custa</h2>
-    <p class="lead">Começa de graça. Depois tu escolhe o pacote, <b>sem precisar acertar nada</b>. O maior tu libera subindo de nível.</p>
+    <p class="lead">Começa de graça. Depois tu escolhe quanto tempo aguenta ser cobrado: 7 dias ou 21.</p>
     <div class="precos">
       <div class="preco gratis"><span><small class="nv">Pra começar</small>3 questões grátis
         <i class="zoa">"Vamos ver se tu é bom em algo além de desculpa."</i></span><span class="v">R$ 0</span></div>
-      <div class="preco travado"><span><small class="nv">🔒 Nível 3 · acerta 50 questões e libera</small>300 questões <small class="dica">(R$ 0,07 cada)</small>
-        <i class="zoa">"Esse aqui é pra quem provou que não é só desculpa."</i></span><span class="v">R$ 19,90</span></div>
-      <div class="preco destaque"><span><small class="nv">⭐ Melhor custo · livre</small>150 questões <small class="dica">(R$ 0,10 cada)</small>
-        <i class="zoa">"Por R$ 5 a mais tu leva mais que o dobro. Até tu entende essa conta."</i></span><span class="v">R$ 14,90</span></div>
-      <div class="preco"><span><small class="nv">Livre</small>60 questões <small class="dica">(R$ 0,17 cada)</small>
+      <div class="preco destaque"><span><small class="nv">⭐ Desafio 21 Dias · garantia em dobro</small>210 questões, 10 por dia <small class="dica">(R$ 0,07 cada)</small>
+        <i class="zoa">"21 dias seguidos. Furou 1, perdeu a garantia. As questões continuam tuas."</i></span><span class="v">R$ 14,90</span></div>
+      <div class="preco"><span><small class="nv">Teste 7 Dias</small>70 questões, 10 por dia <small class="dica">(R$ 0,14 cada)</small>
         <i class="zoa">"Pra quem ainda tá com medo de se comprometer."</i></span><span class="v">R$ 9,90</span></div>
       <div class="preco"><span><small class="nv">Nível 5 · acerta 250 questões e entra</small>Grupo fechado <small class="dica">(em breve)</small>
         <i class="zoa">"Aqui ninguém tem mais desculpa."</i></span><span class="v">🔓</span></div>
     </div>
+    <p class="dica"><b>Garantia do desafio:</b> respondeu 10 questões por dia, 21 dias seguidos, e achou que não valeu? Manda <b>DOBRO</b> no WhatsApp em até 7 dias depois do dia 21 e eu devolvo o dobro do que tu pagou. O bot confere pelo teu histórico.
+      <b>Garantia de 7 dias:</b> se arrependeu da compra, manda <b>REEMBOLSO</b> e o Pix volta. Uma garantia por pessoa.</p>
     <p class="dica">Tu só paga depois de testar as 3, se quiser. Pix dentro do próprio WhatsApp. Não é assinatura. Quando o pacote acabar, tu decide se compra outro.</p>
     <a class="cta" href="#comecar">🔥 Testar grátis primeiro</a>
   </section>
@@ -337,7 +337,7 @@
 </div>
 <script>
   // URL do backend (servidor com o bot). Na hospedagem só de página (Cloudflare Pages / GitHub Pages) aponta pro servidor do bot; servida pelo bot, usa o mesmo endereço.
-  const API = 'https://cascagrossa.duckdns.org';
+  const API = 'https://bot-production-a1c80ae5.up.railway.app';
   const SO_PAGINA = /\.pages\.dev$|\.github\.io$/.test(location.hostname);
   const API_BASE = SO_PAGINA ? API : '';
   // A lista fixa no HTML garante o formulário mesmo se o servidor demorar; se o servidor responder, usa a lista dele.
